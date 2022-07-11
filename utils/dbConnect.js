@@ -8,7 +8,11 @@ if (!DB_URL) {
     );
 }
 
+let cached = global.mongoose;
 
+if (!cached) {
+    cached = global.mongoose = { conn: null, promise: null };
+}
 
 const dbConnect = async () => {
     if (cached.conn) {
